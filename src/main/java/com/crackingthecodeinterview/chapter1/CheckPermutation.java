@@ -4,7 +4,6 @@ import java.util.Hashtable;
 import java.util.Map;
 
 public class CheckPermutation {
-
     // 2. Check Permutation: Given two strings, write a method to decide if one is a permutation of the
     public static boolean checkPermutation(String str1, String str2) {
         if (str1 == null || str2 == null)
