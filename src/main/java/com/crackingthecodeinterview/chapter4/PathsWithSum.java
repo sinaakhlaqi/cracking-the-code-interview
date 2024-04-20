@@ -1,6 +1,7 @@
 package com.crackingthecodeinterview.chapter4;
 
 
+import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -69,7 +70,7 @@ public class PathsWithSum {
 
     public static void printAllPath(BinaryTree<Integer> binaryTree, int desiredSum) {
         for (Node<Integer> node : binaryTree.asGraph().getAllNodes()) {
-            LinkedHashMap<String, Integer> pathWithSum = new LinkedHashMap<>();
+            Hashtable<String, Integer> pathWithSum = new Hashtable<>();
             pathWithSum(binaryTree.getNodeByName(node.getName()),
                     pathWithSum, "");
             for (Map.Entry<String, Integer> entry : pathWithSum.entrySet()) {
