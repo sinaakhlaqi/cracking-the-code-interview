@@ -72,15 +72,15 @@ public class GraphUtils {
         return childHeight;
     }
 
-    public static <T extends Comparable<?>> void
-    breathFirstVisit(Node<T> root, BiConsumer<Node<T>, StringBuilder> visitor,
-                     StringBuilder takenPath) {
+    public static <O, T extends Comparable<?>> void
+    breathFirstVisit(Node<T> root, BiConsumer<Node<T>, O> visitor,
+                     O output) {
         List<Node<T>> queue = new ArrayList<>();
         Set<Node<T>> visited = new HashSet<>();
         queue.add(root);
         while (!queue.isEmpty()) {
             Node<T> temp = queue.remove(0);
-            visitor.accept(temp, takenPath);
+            visitor.accept(temp, output);
             for (Node<T> adj : temp.getAdjList()) {
                 if (!visited.contains(adj) && !queue.contains(adj)) {
                     queue.add(adj);
@@ -90,14 +90,14 @@ public class GraphUtils {
         }
     }
 
-    public static <T extends Comparable<?>> void
-    depthFirstSearch(Node<T> root, BiConsumer<Node<T>, StringBuilder> visitor, StringBuilder track) {
+    public static <O, T extends Comparable<?>> void
+    depthFirstSearch(Node<T> root, BiConsumer<Node<T>, O> visitor, O output) {
         Stack<Node<T>> stack = new Stack<>();
         Set<Node<T>> visited = new HashSet<>();
         stack.add(root);
         while (!stack.isEmpty()) {
             Node<T> temp = stack.pop();
-            visitor.accept(temp, track);
+            visitor.accept(temp, output);
             for (Node<T> adj : temp.getAdjList()) {
                 if (!visited.contains(adj) && !stack.contains(adj)) {
                     stack.push(adj);
@@ -106,7 +106,6 @@ public class GraphUtils {
             visited.add(temp);
         }
     }
-
     public static <T extends Comparable<?>>
     void inOrderVisit(Node<T> root, Consumer<Node<T>> visitor) {
         Node<T> left = root.getAdj(LEFT_LABEL);
