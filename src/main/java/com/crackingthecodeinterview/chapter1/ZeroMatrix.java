@@ -27,8 +27,8 @@ public class ZeroMatrix {
         for (Integer offset : zeroOffsets) {
             int row = offset / matrix.length;
             int column = offset % matrix.length;
-            for (int k = 0; k < matrix[0].length; k++)
-                matrix[row][k] = 0;
+            for (int i = 0; i < matrix[0].length; i++)
+                matrix[row][i] = 0;
             for (int k = 0; k < matrix.length; k++)
                 matrix[k][column] = 0;
         }
