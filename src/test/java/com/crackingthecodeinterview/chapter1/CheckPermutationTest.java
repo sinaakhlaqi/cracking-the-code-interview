@@ -1,9 +1,9 @@
-package com.crackingthecodeinterview;
+package com.crackingthecodeinterview.chapter1;
 
 import org.junit.jupiter.api.Test;
 
 import static com.crackingthecodeinterview.utilities.Constants.EMPTY_STRING;
-import static com.crackingthecodeinterview.CheckPermutation.checkPermutation;
+import static com.crackingthecodeinterview.chapter1.CheckPermutation.checkPermutation;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CheckPermutationTest {

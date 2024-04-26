@@ -1,4 +1,4 @@
-package com.crackingthecodeinterview;
+package com.crackingthecodeinterview.chapter1;
 
 import java.util.Hashtable;
 import java.util.Map;
