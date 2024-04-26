@@ -2,29 +2,38 @@ package com.crackingthecodeinterview;
 
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class CheckPermutation {
-    // 2. Check Permutation: Given two strings, write a method to decide if one is a permutation of the
-    public static boolean checkPermutation(String str1, String str2) {
-        if (str1 == null || str2 == null)
-            return false;
-        Map<Character, Integer> stringCharTable = new Hashtable<>();
-        int[] sum = {0};
-        boolean[] flag = {true};
-        str1.chars().forEach((ch) -> {
+    /**
+     * Given two strings, this method determines if one is a permutation
+     * of the other string.
+     * <em>
+     * this api try's to solve problem 2
+     * <p>
+     * Problem check permutation: Given two strings, write a method to decide if one is a permutation of the
+     *
+     * @param stringA first string input
+     * @param stringB second string input
+     * @return true if two strings are permutation of each other; otherwise false.
+     * @throws NullPointerException if one of the input strings are null;
+     */
+    public static boolean checkPermutation(String stringA, String stringB) {
+        Map<Character, Integer> charHistogram = new Hashtable<>();
+        stringA.chars().forEach((ch) -> {
             char key = (char) ch;
-            stringCharTable.merge(key, 1, Integer::sum);
-            sum[0]++;
+            charHistogram.merge(key, 1, Integer::sum);
         });
-        str2.chars().forEach((ch) -> {
-            char key = (char) ch;
-            if (stringCharTable.get(key) == null || (stringCharTable.get(key) - 1 < 0)) {
-                flag[0] = false;
-            } else {
-                stringCharTable.put(key, stringCharTable.get(key) - 1);
-                sum[0]--;
-            }
-        });
-        return flag[0] && sum[0] == 0;
+
+        for (char ch : stringB.toCharArray()) {
+            if (!charHistogram.containsKey(ch))
+                return false;
+            int chCount = charHistogram.get(ch) - 1;
+            if (chCount == 0)
+                charHistogram.remove(ch);
+            else
+                charHistogram.merge(ch, -1, Integer::sum);
+        }
+        return charHistogram.isEmpty();
     }
 }
